@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { Home } from "./components/Home";
+import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
+import { Cardpizza } from "./components/Cardpizza";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const data = [
+    {
+      title: "Pizza Napolitana",
+      ingredients: "Ingredientes Mozzarella, tomate, jamon, oregano",
+      price: "Precio: $5.950",
+      more: "Ver mas",
+      add: "Agregar",
+      img: "img/napolitana.png",
+      key: "pizza-01",
+    },
+    {
+      title: "Pizza Española",
+      ingredients: "Ingredientes Mozzarella, gorgonzola, parmesano, provolone",
+      price: "Precio: $6.950",
+      more: "Ver mas",
+      add: "Agregar",
+      img: "img/española.png",
+      key: "pizza-02",
+    },
+    {
+      title: "Pizza Pepperoni",
+      ingredients: "Ingredientes Mozzarella, pepperoni, oregano",
+      price: "Precio: $6.950",
+      more: "Ver mas",
+      add: "Agregar",
+      img: "img/pepperoni.png",
+      key: "pizza-03",
+    },
+  ];
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <Navbar />
+      <Home />
+      <div className="container">
+        <div className="card-grid p-4">
+          {data.map((pizza) => (
+            <Cardpizza {...pizza} key={pizza.key} />
+          ))}
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
