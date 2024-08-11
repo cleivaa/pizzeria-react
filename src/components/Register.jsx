@@ -6,6 +6,8 @@ import Form from 'react-bootstrap/Form';
 export const Register = ({handleOnChange, handleOnSubmit}) => {
     
   return (
+    <div className="login">
+        <h2>Register</h2>
     <Form onChange={handleOnChange} onSubmit={handleOnSubmit}>
       <Form.Group className="mb-3" controlId="formViteUsername">
         <Form.Label>Email</Form.Label>
@@ -43,6 +45,7 @@ export const Register = ({handleOnChange, handleOnSubmit}) => {
         Login
       </Button>
     </Form>
+    </div>
   );
 }
 

@@ -3,3 +3,9 @@
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) ;
   grid-gap: 15px;
 }
+
+.login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
