@@ -2,7 +2,7 @@ import React from "react";
 
 export const Navbar = () => {
   const total = 25000;
-  const token = true;
+  const token = false;
   return (
     <nav className="navbar navbar-expand-lg navbar-dark text-white bg-grey">
       <div className="container-fluid">
