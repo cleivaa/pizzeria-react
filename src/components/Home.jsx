@@ -1,14 +1,26 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "./Header";
-import { datapizza } from "./pizzas";
 import { Cart } from "./Cart";
 import { Products } from "./Products";
 
+
 export const Home = () => {
-	const [products, setProducts] = useState(datapizza);
+	const [products, setProducts] = useState([]);
 
   const [cartContent, setCartContent] = useState([]);
+
+  const consultarApi = async () => {
+    const url = "http://localhost:5000/api/pizzas";
+    const response = await fetch(url);
+    const data = await response.json();
+    setProducts(data)
+  }
+
+  useEffect(() => {
+    consultarApi()
+  },[]) 
+
 
   const handleAddToCart = (pizza) => {
 		if (cartContent.find((productCart) => productCart.id === pizza.id)) {

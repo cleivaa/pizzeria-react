@@ -1,14 +1,16 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import  Pizza  from "./components/Pizza";
+import { Cardpizza } from "./components/Cardpizza";
 // import { Login } from "./components/Login";
 // import { Register } from "./components/Register";
-import { Home } from "./components/Home";
+// import { Home } from "./components/Home";
 
 function App() {
- 
-  const [formData, setFormData] = useState({
+
+  /*const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
@@ -89,13 +91,17 @@ function App() {
       return "Las contraseñas deben coincidir";
     }
     return "";
-  };
+  };*/
+ 
+
+
 
   return (
     <>
       <Navbar />
-      <Home />
-      {/* {showLogin ? (
+      <Pizza />
+      {/* <Home />
+      {showLogin ? (
         <Login
           handleOnChange={handleOnChange}
           handleOnSubmit={handleOnSubmit}

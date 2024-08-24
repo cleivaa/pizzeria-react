@@ -1,20 +1,15 @@
 import React from "react";
 
 export const Cardpizza = ({
-  title,
-  ingredients,
-  price,
-  img,
-  id,
-  addToCart,
-  removeFromCart,
+  desc, id, img, ingredients, name, price
 }) => {
   return (
     <>
       <div className="card mx-2" key={id}>
         <img src={img} className="card-img-top" alt="pizza" />
         <div className="card-body">
-          <h5 className="card-title fw-light mb-3">{title}</h5>
+          <h5 className="card-title fw-light mb-3">{name}</h5>
+          <h6 className="card-title fw-light mb-3">{desc}</h6>
           <ul>
             {ingredients.map((ingredient, idx) => (
               <li key={`id-${idx}`}>{ingredient}</li>
@@ -30,7 +25,7 @@ export const Cardpizza = ({
             className="btn btn-dark"
             id="btn-add"
             onClick={() => addToCart({
-              title,
+              name,
               ingredients,
               price,
               img,
