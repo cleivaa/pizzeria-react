@@ -1,7 +1,13 @@
-import React from "react";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { PizzaContext } from "../context/PizzaContext";
 
 export const Navbar = () => {
-  const total = 25000;
+  const { cartContent } = useContext(PizzaContext);
+  var total = 0;
+  cartContent.map((e) => {
+    total = total + e.cantidad * e.price;
+  });
   const token = false;
   return (
     <nav className="navbar navbar-expand-lg navbar-dark text-white bg-grey">
@@ -9,6 +15,22 @@ export const Navbar = () => {
         <a className="navbar-brand" href="#">
           PIZZERIA MAMA MIA!
         </a>
+        <Link to="/" className="text-white ms-3 text-decoration-none">
+          Home
+        </Link>
+        <Link to="/register" className="text-white ms-3 text-decoration-none">
+          🔐Register
+        </Link>
+        <Link to="/login" className="text-white ms-3 text-decoration-none">
+          🔐Login
+        </Link>
+        <Link to="/cart" className="text-white ms-3 text-decoration-none">
+          Cart
+        </Link>
+        <Link to="/profile" className="text-white ms-3 text-decoration-none">
+          Profile
+        </Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -22,7 +44,7 @@ export const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarText">
           <div className="navbar-nav me-auto mb-2 mb-lg-0">
-            {token ? (
+            {/* {token ? (
               <>
                 <a className="nav-item nav-link" href="#">
                   🔓profile
@@ -38,12 +60,15 @@ export const Navbar = () => {
                 </a>
                 <a className="nav-item nav-link" href="#">
                   🔐Register
-                </a>
+                </a> 
               </>
-            )}
+            )}*/}
           </div>
           <span className="navbar-text">
             <button type="button" className="btn btn-dark">
+              <Link to="/cart" className="text-white ms-3 text-decoration-none">
+                Cart
+              </Link>
               🛒 Total:{" "}
               {total.toLocaleString("es-cl", {
                 style: "currency",

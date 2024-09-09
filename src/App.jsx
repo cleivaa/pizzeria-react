@@ -2,15 +2,19 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
-import  Pizza  from "./components/Pizza";
-import { Cardpizza } from "./components/Cardpizza";
-// import { Login } from "./components/Login";
-// import { Register } from "./components/Register";
-// import { Home } from "./components/Home";
+import Pizza from "./Pages/Pizza";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Login } from "./Pages/Login";
+import { Register } from "./Pages/Register";
+import { Home } from "./Pages/Home";
+import { Cart } from "./Pages/Cart";
+import Profile from "./components/Profile";
+import NotFound from "./components/NotFound";
+import { Header } from "./components/Header";
+import PizzaProvider from "./context/PizzaContext";
 
 function App() {
-
-  /*const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
@@ -41,7 +45,7 @@ function App() {
     if (formError) {
       alert(formError);
     }
-    setShowLogin(false)
+    setShowLogin(false);
   };
 
   const handleOnSubmitRegister = (event) => {
@@ -61,7 +65,7 @@ function App() {
     } else {
       alert("Registro exitoso");
     }
-    setShowLogin(true)
+    setShowLogin(true);
   };
 
   const handleValidateForm = (form) => {
@@ -91,31 +95,36 @@ function App() {
       return "Las contraseñas deben coincidir";
     }
     return "";
-  };*/
- 
-
-
+  };
 
   return (
     <>
-      <Navbar />
-      <Pizza />
-      {/* <Home />
-      {showLogin ? (
-        <Login
+      <PizzaProvider>
+        <Navbar />
+        <Header />
+        {/* {showLogin? 
+        ( <Login
           handleOnChange={handleOnChange}
           handleOnSubmit={handleOnSubmit}
-        />
-      ) : (
-        <Register
+        />) : 
+        ( <Register
           handleOnChange={handleOnChange}
           handleOnSubmit={handleOnSubmitRegister}
-        />
-      )} */}
-      <Footer />
+        /> )}*/}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/pizza/p001" element={<Pizza />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/404" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/404" replace />} />
+        </Routes>
+        <Footer />
+      </PizzaProvider>
     </>
   );
 }
-
 
 export default App;

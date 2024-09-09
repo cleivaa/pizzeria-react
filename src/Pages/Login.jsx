@@ -38,7 +38,3 @@ export const Login = ({ handleOnChange, handleOnSubmit }) => {
   );
 };
 
-Login.propTypes = {
-  handleOnChange: PropTypes.func.isRequired,
-  handleOnSubmit: PropTypes.func.isRequired,
-};

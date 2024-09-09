@@ -25,6 +25,7 @@ input[placeholder] {
 }
 
 .titulo-pizzeria {
+
   background-image: url(/public/img/image.png);
   background-size: cover;
   width: 100%;
@@ -32,10 +33,6 @@ input[placeholder] {
   height: 150px;
   color: aliceblue;
   padding-top: 32px;  
-}
-
-#btn-add {
-  margin-left: 50px;
 }
 
 footer {
