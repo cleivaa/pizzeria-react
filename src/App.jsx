@@ -11,8 +11,7 @@ import { Cart } from "./Pages/Cart";
 import Profile from "./components/Profile";
 import NotFound from "./components/NotFound";
 import { Header } from "./components/Header";
-import PizzaProvider from "./context/PizzaContext";
-import UserProvider, { UserContext } from "./context/UserContext";
+import { UserContext } from "./context/UserContext";
 import { useContext } from "react";
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
     password: "",
   });
 
-  const {tokenContext} = useContext(UserContext);
+  const { tokenContext } = useContext(UserContext);
 
   const [showLogin, setShowLogin] = useState(false);
 
@@ -103,11 +102,9 @@ function App() {
 
   return (
     <>
-      <PizzaProvider>
-        <UserProvider>
-          <Navbar />
-          <Header />
-          {/* {showLogin? 
+      <Navbar />
+      <Header />
+      {/* {showLogin? 
         ( <Login
           handleOnChange={handleOnChange}
           handleOnSubmit={handleOnSubmit}
@@ -116,19 +113,20 @@ function App() {
           handleOnChange={handleOnChange}
           handleOnSubmit={handleOnSubmitRegister}
         /> )}*/}
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Home />} />
-            <Route path="/login" element={<Home />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/pizza/:id" element={<Pizza />} />
-            <Route path="/profile" element={tokenContext? <Profile />: <Navigate to="/login"/>} />
-            <Route path="/404" element={<NotFound />} />
-            <Route path="*" element={<Navigate to="/404" replace />} />
-          </Routes>
-          <Footer />
-        </UserProvider>
-      </PizzaProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Home />} />
+        <Route path="/login" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/pizza/:id" element={<Pizza />} />
+        <Route
+          path="/profile"
+          element={tokenContext ? <Profile /> : <Navigate to="/login" />}
+        />
+        <Route path="/404" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
+      </Routes>
+      <Footer />
     </>
   );
 }

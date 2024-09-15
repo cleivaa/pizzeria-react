@@ -1,20 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { Products } from "../components/Products";
+import { PizzaContext } from "../context/PizzaContext";
 
 export const Home = () => {
-  const [products, setProducts] = useState([]);
-
-  const consultarApi = async () => {
-    const url = "http://localhost:5000/api/pizzas";
-    const response = await fetch(url);
-    const data = await response.json();
-    setProducts(data);
-  };
-
-  useEffect(() => {
-    consultarApi();
-  }, []);
+  const { products } = useContext(PizzaContext);
 
   return <Products products={products} />;
 };
