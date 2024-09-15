@@ -1,9 +1,12 @@
 import React from "react";
 import { useContext } from "react";
 import { PizzaContext } from "../context/PizzaContext";
+import { UserContext } from "../context/UserContext";
+
 
 export const Cart = () => {
   const { cartContent } = useContext(PizzaContext);
+  const { tokenContext, logout} = useContext(UserContext);
 
   var total = 0;
   var cantidad = 0;
@@ -22,6 +25,7 @@ export const Cart = () => {
         <ul>
         {cartContent.map((e)=> {
           return <li>nombre: {e.name} cantidad: {e.cantidad}</li>
+          
         })}
         </ul>
         <div>
@@ -35,7 +39,8 @@ export const Cart = () => {
               currency: "CLP",
             })}
           </h2>
-          <button className="btn btn-dark me-2">Pagar</button>
+          <button className="btn btn-dark me-2" disabled={!tokenContext} >Pagar</button>
+          
         </div>
       </div>
     </>

@@ -13,12 +13,15 @@ import NotFound from "./components/NotFound";
 import { Header } from "./components/Header";
 import PizzaProvider from "./context/PizzaContext";
 import UserProvider, { UserContext } from "./context/UserContext";
+import { useContext } from "react";
 
 function App() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const {tokenContext} = useContext(UserContext);
 
   const [showLogin, setShowLogin] = useState(false);
 
@@ -115,11 +118,11 @@ function App() {
         /> )}*/}
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Home />} />
+            <Route path="/login" element={<Home />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/pizza/:id" element={<Pizza />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={tokenContext? <Profile />: <Navigate to="/login"/>} />
             <Route path="/404" element={<NotFound />} />
             <Route path="*" element={<Navigate to="/404" replace />} />
           </Routes>
