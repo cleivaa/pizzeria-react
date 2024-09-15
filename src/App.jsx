@@ -12,6 +12,7 @@ import Profile from "./components/Profile";
 import NotFound from "./components/NotFound";
 import { Header } from "./components/Header";
 import PizzaProvider from "./context/PizzaContext";
+import UserProvider, { UserContext } from "./context/UserContext";
 
 function App() {
   const [formData, setFormData] = useState({
@@ -100,9 +101,10 @@ function App() {
   return (
     <>
       <PizzaProvider>
-        <Navbar />
-        <Header />
-        {/* {showLogin? 
+        <UserProvider>
+          <Navbar />
+          <Header />
+          {/* {showLogin? 
         ( <Login
           handleOnChange={handleOnChange}
           handleOnSubmit={handleOnSubmit}
@@ -111,17 +113,18 @@ function App() {
           handleOnChange={handleOnChange}
           handleOnSubmit={handleOnSubmitRegister}
         /> )}*/}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/pizza/p001" element={<Pizza />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/404" element={<NotFound />} />
-          <Route path="*" element={<Navigate to="/404" replace />} />
-        </Routes>
-        <Footer />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/pizza/:id" element={<Pizza />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/404" element={<NotFound />} />
+            <Route path="*" element={<Navigate to="/404" replace />} />
+          </Routes>
+          <Footer />
+        </UserProvider>
       </PizzaProvider>
     </>
   );

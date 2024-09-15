@@ -35,6 +35,7 @@ export const Cart = () => {
               currency: "CLP",
             })}
           </h2>
+          <button className="btn btn-dark me-2">Pagar</button>
         </div>
       </div>
     </>

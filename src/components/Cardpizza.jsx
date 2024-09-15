@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { PizzaContext } from "../context/PizzaContext";
+import { Link } from "react-router-dom";
 
 export const Cardpizza = ({ desc, id, img, ingredients, name, price }) => {
   const { cartContent, setCartContent } = useContext(PizzaContext);
@@ -45,7 +46,9 @@ export const Cardpizza = ({ desc, id, img, ingredients, name, price }) => {
   return (
     <>
       <div className="card mx-2" key={id}>
-        <img src={img} className="card-img-top" alt="pizza" />
+        <Link to={`pizza/${id}`}>
+          <img src={img} className="card-img-top" alt="pizza" />
+        </Link>
         <div className="card-body">
           <h3 className="card-title fw-bold text-dark mb-3">{name}</h3>
           <h6 className="card-title fw-light mb-3">{desc}</h6>

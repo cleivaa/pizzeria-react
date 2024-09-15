@@ -1,14 +1,15 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { PizzaContext } from "../context/PizzaContext";
+import { UserContext } from "../context/UserContext";
 
 export const Navbar = () => {
   const { cartContent } = useContext(PizzaContext);
+  const { tokenContext, logout} = useContext(UserContext);
   var total = 0;
   cartContent.map((e) => {
     total = total + e.cantidad * e.price;
   });
-  const token = false;
   return (
     <nav className="navbar navbar-expand-lg navbar-dark text-white bg-grey">
       <div className="container-fluid">
@@ -18,18 +19,11 @@ export const Navbar = () => {
         <Link to="/" className="text-white ms-3 text-decoration-none">
           Home
         </Link>
-        <Link to="/register" className="text-white ms-3 text-decoration-none">
-          🔐Register
-        </Link>
-        <Link to="/login" className="text-white ms-3 text-decoration-none">
-          🔐Login
-        </Link>
+       
         <Link to="/cart" className="text-white ms-3 text-decoration-none">
           Cart
         </Link>
-        <Link to="/profile" className="text-white ms-3 text-decoration-none">
-          Profile
-        </Link>
+    
 
         <button
           className="navbar-toggler"
@@ -44,12 +38,12 @@ export const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarText">
           <div className="navbar-nav me-auto mb-2 mb-lg-0">
-            {/* {token ? (
+            {tokenContext ? (
               <>
                 <a className="nav-item nav-link" href="#">
                   🔓profile
                 </a>
-                <a className="nav-item nav-link" href="#">
+                <a className="nav-item nav-link" onClick={()=> {logout()}} href="#">
                   🔒Logout
                 </a>
               </>
@@ -62,7 +56,7 @@ export const Navbar = () => {
                   🔐Register
                 </a> 
               </>
-            )}*/}
+            )}
           </div>
           <span className="navbar-text">
             <button type="button" className="btn btn-dark">
