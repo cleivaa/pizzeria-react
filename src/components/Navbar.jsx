@@ -5,7 +5,8 @@ import { UserContext } from "../context/UserContext";
 
 export const Navbar = () => {
   const { cartContent } = useContext(PizzaContext);
-  const { tokenContext, logout} = useContext(UserContext);
+  const { getToken, logout} = useContext(UserContext);
+  const tokenContext = getToken()
   var total = 0;
   cartContent.map((e) => {
     total = total + e.cantidad * e.price;
@@ -40,21 +41,21 @@ export const Navbar = () => {
           <div className="navbar-nav me-auto mb-2 mb-lg-0">
             {tokenContext ? (
               <>
-                <a className="nav-item nav-link" href="#">
-                  🔓profile
-                </a>
+                <Link to="/profile" className="text-white ms-3 text-decoration-none">
+               🔓profile
+                </Link>
                 <a className="nav-item nav-link" onClick={()=> {logout()}} href="#">
                   🔒Logout
                 </a>
               </>
             ) : (
               <>
-                <a className="nav-item nav-link" href="#">
-                  🔐Login
-                </a>
-                <a className="nav-item nav-link" href="#">
-                  🔐Register
-                </a> 
+                <Link to="/login" className="text-white ms-3 text-decoration-none">
+                🔐Login
+                </Link>
+                <Link to="/register" className="text-white ms-3 text-decoration-none">
+                🔐Register
+                </Link>
               </>
             )}
           </div>
