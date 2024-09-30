@@ -5,7 +5,24 @@ import { UserContext } from "../context/UserContext";
 
 export const Cart = () => {
   const { cartContent, setCartContent } = useContext(PizzaContext);
-  const { tokenContext, logout } = useContext(UserContext);
+  const { getToken, logout } = useContext(UserContext);
+
+  const checkout = async () => {
+    const url = "http://localhost:5000/api/checkouts";
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+      },
+      body: JSON.stringify({
+        cart: cartContent,
+      }),
+    });
+    const data = await response.json();
+    console.log(data)
+    alert("GRACIAS POR TU COMPRA!")
+  };
 
   const handleAddToCart = (pizza) => {
     if (cartContent.find((productCart) => productCart.id === pizza.id)) {
@@ -89,7 +106,9 @@ export const Cart = () => {
                           cantidad: e.cantidad,
                         })
                       }
-                    >Eliminar</button>
+                    >
+                      Eliminar
+                    </button>
                   </li>
                 );
               })}
@@ -105,7 +124,10 @@ export const Cart = () => {
                   currency: "CLP",
                 })}
               </h2>
-              <button className="btn btn-dark me-2" disabled={!tokenContext}>
+              <button
+                className="btn btn-dark me-2"
+                onClick={checkout}
+              >
                 Pagar
               </button>
             </div>
